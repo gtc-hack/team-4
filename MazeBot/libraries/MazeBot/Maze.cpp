@@ -1,30 +1,14 @@
 
 #include "Maze.h"
-#include <math.h> /* for distance calculations - could do without */
 #include "List.h"
 #include "Point.h"
-#include <stdlib.h>     /* srand, rand */
 
-Maze::Maze() {
-    srand(millis());
+Maze::Maze() : start(width/2, height/2), current(width/2, height/2)  {
+    // randomSeed(analogRead(0));
     const int size = width * height;
-    grid = new int[size];
     for (int i = 0; i < size; i++) {
         grid[i] = 0;
     }
-    
-	//for (int x = 1; x < width - 1; x++) {
-        for (int y = 1; y < height - 1; y++) {
-            //open[x * width + y] = 1;
-			open[y] = 0x7FFFEL;
-        }
-    //}
-	
-	open[0] = 0L;
-	open[19] = 0L;
-
-    //open[current.second * width + current.first] = 0;
-	setClosed(current.first, current.second);
 }
 
 
@@ -61,7 +45,7 @@ int Maze::oppositeMove(int move) {
 }
 
 int Maze::randomMove(List& list) {
-    return list.at(rand() % list.size());
+    return list.at(random(list.size()));
 }
 
 void Maze::getMoves(List& list) {
@@ -96,13 +80,12 @@ void Maze::makeMove(int move, bool draw) {
         }
     }
     if (draw) {
-		setClosed(current.first, current.second);
         connectPoints(old, current);
     }
 }
 
 bool Maze::connectPoints(Point p1, Point p2) {
-    if (distance(p1, p2) == 1.0) { // Sanity check.  Could probably do without this function.
+    if (true) { // Sanity check.  Could probably do without this function.
         switch (p1.first - p2.first) {
             case -1: //Right
                 grid[p1.second * Maze::width + p1.first] |= RIGHT;
@@ -134,17 +117,8 @@ bool Maze::connectPoints(Point p1, Point p2) {
     }
 }
 
-double Maze::distance(Point p1, Point p2) {
-    return sqrt(pow(p1.first - p2.first, 2) + pow(p1.second - p2.second, 2));
-}
-
-void Maze::setClosed(int x, int y) {
-	long mask = ~(1L << x);
-	open[y] &= mask;
-}
-
 bool Maze::isOpen(int x, int y) {
-	return (open[y] >> x) & 1;
+	return x > 0 && x < 19 && y > 0 && y < 19 && grid[y * width + x] == 0;
 }
 
 int Maze::grid_value(int x, int y) {

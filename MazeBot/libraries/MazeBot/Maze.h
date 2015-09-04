@@ -14,8 +14,8 @@ class Maze
 {
     
 public:
-    static const int width = 20;
-    static const int height = 20;
+    static const int width = 10;
+    static const int height = 10;
     Maze();
     virtual ~Maze();
     int next_move();
@@ -23,8 +23,7 @@ public:
     
 private:
 
-	int *grid;
-    long open[20];
+	char grid[100];
     Point start = Point(width/2, height/2);
     Point current = Point(width/2, height/2);
     StackArray<char> path;
@@ -35,7 +34,6 @@ private:
     void makeMove(int move, bool draw);
     bool connectPoints(Point p1, Point p2);
     double distance(Point p1, Point p2);
-	void setClosed(int x, int y);
 	bool isOpen(int x, int y);
     
 };
