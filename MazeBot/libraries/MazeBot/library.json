@@ -1,0 +1,15 @@
+{
+  "name": "Maze",
+  "keywords": "Maze",
+  "description": "A Maze library for DFRobot",
+  "repository":
+  {
+    "type": "git",
+    "url": ""
+  },
+  "frameworks": "arduino",
+  "platforms":
+  [
+    "atmelavr"
+  ]
+}

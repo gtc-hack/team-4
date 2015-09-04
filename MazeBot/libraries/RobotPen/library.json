@@ -1,0 +1,15 @@
+{
+  "name": "RobotPen",
+  "keywords": "RobotPen",
+  "description": "A tepper Motor library for DFRobot",
+  "repository":
+  {
+    "type": "git",
+    "url": ""
+  },
+  "frameworks": "arduino",
+  "platforms":
+  [
+    "atmelavr"
+  ]
+}

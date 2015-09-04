@@ -1,0 +1,15 @@
+{
+  "name": "Turning",
+  "keywords": "Turning",
+  "description": "A simplistic turning library for DFRobot",
+  "repository":
+  {
+    "type": "git",
+    "url": ""
+  },
+  "frameworks": "arduino",
+  "platforms":
+  [
+    "atmelavr"
+  ]
+}
